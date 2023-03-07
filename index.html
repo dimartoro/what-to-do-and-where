@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css" rel="stylesheet">
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <title>Where We Dranking?</title>
+</head>
+<body>
+  <!--title and hero element-->
+      <section class="hero is-info">
+        <div class="hero-body">
+          <p class="title is-size-1">
+            Where We Dranking?
+          </p>
+          <p class="subtitle is-size-2">
+            We can find a bar for you to drink in! Just let us know where you wanna look down below!
+          </p>
+        </div>
+      </section>
+<!--middle section with input buttons for cities-->
+    <div class="is-flex is-justify-content-center">
+  <section class="section is-large">
+        <h1 class="title"></h1>
+        <h2 id="content-for-btn" class="subtitle is-size-2">
+          What city are you drinking in:
+        </h2>
+        
+<button id="dallas-btn" class="button is-large">Dallas, TX</button>
+<button id="sf-btn" class="button is-large">San Francisco, CA</button>
+<button id="cin-btn" class="button is-large">Cincinnati, OH</button>
+<button id="sd-btn" class="button is-large">San Diego, CA</button>
+<button id="miami-btn" class="button is-large">Miami, FL</button>
+      </section>
+    </div>
+<!--modal for more information-->
+<div id="modal-js-example" class="modal">
+  <div class="modal-background"></div>
+
+  <div class="modal-content">
+    <div class="box">
+      <p>Information about city and bars</p>
+      <!-- Your content -->
+    </div>
+  </div>
+
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+<button class="js-modal-trigger" data-target="modal-js-example">
+  Want to know more about your city?
+</button>
+
+<!--javascript link-->
+<script href="./assets/javascript/script.js"></script>
+</body>
+</html>
