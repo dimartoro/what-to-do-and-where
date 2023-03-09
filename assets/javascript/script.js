@@ -43,6 +43,8 @@ function getApi(event) {
         '<tr><td>'+gunDeathsDesc+'</td><td>'+gunDeaths+'</td></tr>';
 
         cityData.innerHTML = tableInsert;
+         //Call to function getBreweries() passing city.toLowerCase parameter
+        getBreweries(cityHeader.toLowerCase());
       });
   }
   
@@ -94,3 +96,95 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 //End of JS for modal
+
+// Function getBreweries() access de API by city and limits de number to 5 only
+function getBreweries(city) {
+  var queryString = "https://api.openbrewerydb.org/breweries?by_city=" + city + "&per_page=5";
+  fetch(queryString)
+      .then(function(response) {
+          return response.json();
+      })
+      .then(function(data) {
+          console.log("This is the city seach data: ", data);
+          displayBrewery(data);
+      });
+}
+
+// Function in charge of examines the object Breweries information creating and 
+//appending in html the ul, li and span elements on the fly.
+function displayBrewery(info) {
+  console.log("This is the Brewery Info : ", info);
+  var ulElements = document.querySelector("#ulElements");
+  var table = document.querySelector("#tblBreweries");
+  ulElements.innerHTML = '';
+  for (var x = 0; x < info.length; x++) {
+      var li = document.createElement("li"); 
+
+      var breweryType = info[x].brewery_type;
+      var city = info[x].city;
+      var country = info[x].country;
+      var countyProvince = info[x].county_province;
+      var createdAt = info[x].created_at;
+      var id = info[x].id;
+      var latitude = info[x].latitude;
+      var longitude = info[x].longitude;
+      var name = info[x].name;
+      var phone = info[x].phone;
+      var postalCode = info[x].postal_code;
+      var state = info[x].state;
+      var street = info[x].street;
+      var updatedAt = info[x].updated_at;
+      var websiteURL = info[x].website_url;
+
+      var spanBreweryType = document.createElement("span");
+      var spanCity = document.createElement("span");
+      var spanCountry = document.createElement("span");
+      var spanCountyProvince = document.createElement("span");
+      var spanCreatedAt= document.createElement("span");
+      var spanId = document.createElement("span");
+      var spanLatitude = document.createElement("span");
+      var spanLongitude = document.createElement("span");
+      var spanName = document.createElement("span");
+      var spanPhone = document.createElement("span");
+      var spanPostalCode = document.createElement("span");
+      var spanState = document.createElement("span");
+      var spanStreet = document.createElement("span");
+      var spanUpdatedAt = document.createElement("span");
+      var spanWebsiteURL = document.createElement("span");
+
+      spanBreweryType.textContent = breweryType;
+      spanName.textContent = name;
+      spanCity.textContent = city;
+      spanCountry.textContent = country;
+      spanCountyProvince.textContent = countyProvince;
+      spanCreatedAt.textContent = createdAt;
+      spanId.textContent = id;
+      spanLatitude.textContent = latitude;
+      spanLongitude.textContent = longitude;  
+      spanPhone.textContent = phone;
+      spanPostalCode.textContent = postalCode;
+      spanState.textContent = state;
+      spanStreet.textContent = street;
+      spanUpdatedAt.textContent = updatedAt;
+      spanWebsiteURL.textContent = websiteURL;
+
+      // li.setAttribute("id", "liBrewery" + x);
+      li.append(spanName);
+      li.append(spanBreweryType);  
+      li.append(spanCountyProvince);
+      // li.append(spanCreatedAt); 
+      // li.append(spanLatitude);
+      // li.append(spanLongitude); 
+      // li.append(spanId);  
+      li.append(spanPhone);
+      li.append(spanStreet);
+      li.append(spanState);
+      li.append(spanPostalCode);
+      li.append(spanCity);
+      li.append(spanCountry); 
+      // li.append(spanUpdatedAt);
+      li.append(spanWebsiteURL);
+      ulElements.append(li);
+  }
+
+}
