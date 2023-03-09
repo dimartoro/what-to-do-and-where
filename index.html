@@ -16,59 +16,63 @@
           <p class="title is-size-1">
             Where We Dranking?
           </p>
-          <p class="subtitle is-size-2">
-            We can find a bar for you to drink in! Just let us know where you wanna look down below!
+          <p class="subtitle is-size-3">
+            We can find a bar for you to drink in! <br>Just let us know where you wanna look down below!
           </p>
         </div>
       </section>
 <!--middle section with input buttons for cities-->
 <section id="background">
-<div class="is-flex is-justify-content-center">
-  <section class="section is-large">
-        <h1 class="title"></h1>
-        <h2 id="content-for-btn" class="subtitle is-size-2 has-text-white">
-          What city are you drinking in:
-        </h2>
-<!--Button list for cities-->        
-  <div id="btn-group"> 
-<button  class="button is-large">Dallas</button>
-<button  class="button is-large">New York</button>
-<button  class="button is-large">Cincinnati</button>
-<button  class="button is-large">San Diego</button>
-<button  class="button is-large">Boston</button>
-<button  class="button is-large">Seattle</button>
-<button  class="button is-large">Chicago</button>
-<button  class="button is-large">Detroit</button>
-<button  class="button is-large">Miami</button>
-  </div>  
-      </section>
-    </div>
-<!--modal for more information-->
-<div id="modal-js-example" class="modal">
-  <div class="modal-background"></div>
+  <div class="is-flex is-justify-content-center">
+    <section class="section is-large">
+      <h1 class="title"></h1>
+      <h2 id="content-for-btn" class="subtitle is-size-2 has-text-white">
+        What city are you drinking in:
+      </h2>
+      <form id="search-form">
+        <h3 id="search-header">Search for a City:</h3>
+        <input type="text" id="search-text" placeholder="Enter major US city name">
+        <input type="submit" id="btn-search" value="Search">
+      </form>        
+      <!--Button list for cities-->        
+      <div id="btn-group"> 
+        <button  class="button is-large">Dallas</button>
+        <button  class="button is-large">New York</button>
+        <button  class="button is-large">Cincinnati</button>
+        <button  class="button is-large">San Diego</button>
+        <button  class="button is-large">Boston</button>
+        <button  class="button is-large">Seattle</button>
+        <button  class="button is-large">Chicago</button>
+        <button  class="button is-large">Detroit</button>
+        <button  class="button is-large">Miami</button>
+      </div>  
+    </section>
+  </div>
+  <!--modal for more information-->
+  <div id="modal-js-example" class="modal">
+    <div class="modal-background"></div>
 
-  <div class="modal-content">
-    <div class="box">
-      <h2 id="city-data-heading">Fun facts about <span id="table-city"></span>:</h2>
-      <!-- Your content -->
-      <table id="city-data">
-      </table> 
+    <div class="modal-content">
+      <div class="box">
+        <h2 id="city-data-heading">Fun facts about <span id="table-city"></span>:</h2>
+        <!-- Your content -->
+        <table id="city-data">
+        </table> 
+      </div>
     </div>
+
+    <button class="modal-close is-large" aria-label="close"></button>
   </div>
 
-  <button class="modal-close is-large" aria-label="close"></button>
-</div>
-
-<!--temporarily for visualization, *pending table-->
-<div id="divBrewery">
-    <ul id="ulElements"></ul>
-    <table id="tblBreweries"></table>
-</div>
-<!------------------------------------------------->
-
-<button class="js-modal-trigger" data-target="modal-js-example">
-  Want to know more about your city?
-</button>
+  <!--temporarily for visualization, *pending table-->
+  <div id="divBrewery">
+      <ul id="ulElements"></ul>
+      <table id="tblBreweries"></table>
+  </div>
+  <!------------------------------------------------->
+  <button id="info-btn" class="js-modal-trigger" data-target="modal-js-example">
+    Want to know more about your city?
+  </button>
 </section>    
 
 
