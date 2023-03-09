@@ -5,6 +5,38 @@
     background-size: cover;
 }
 
+#search-header {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-shadow: 0px 0px 10px black;
+    margin-bottom: 10px;
+}
+
+#search-form {
+    margin-bottom: 20px;
+}
+
+#search-text {
+    height: 30px;
+    padding: 10px;
+    border: 2px black;
+    border-radius: 5px;
+}
+
+#btn-search {
+    background-color: rgb(135, 246, 135);
+    font-weight: 500;
+    height: 30px;
+    padding: 5px 10px;
+    border: 2px black;
+    border-radius: 5px;
+}
+
+#info-btn {
+    display: none;
+}
+
 td {
     padding-top: 10px;
     padding-bottom: 10px;

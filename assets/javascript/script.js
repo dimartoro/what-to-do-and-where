@@ -1,11 +1,22 @@
 var btnCity = document.getElementById("btn-group");
 var cityData = document.getElementById('city-data');
 var tableHeaderSpan = document.getElementById('table-city');
+var searchField = document.getElementById("search-text");
+var btnSearch = document.getElementById("btn-search");
+var btnInfo = document.getElementById('info-btn')
 
 function getApi(event) {
+    event.preventDefault();
     // fetch request gets a list of all the repos for the node.js organization
-    var cityHeader = event.target.textContent;
-    var city = event.target.textContent.toLowerCase().replace(" ","-");
+    if (event.target.id == "btn-search"){
+      cityHeader = searchField.value;
+    }
+    else {
+      cityHeader = event.target.textContent;
+    };
+    console.log(city);
+
+    var city = cityHeader.toLowerCase().replace(" ","-");
     var requestUrl = 'https://api.teleport.org/api/urban_areas/slug:' + city + '/details/';
     
     tableHeaderSpan.textContent = cityHeader;
@@ -15,6 +26,10 @@ function getApi(event) {
         return response.json();
       })
       .then(function (data) {
+        if (data.status == 404){
+          btnInfo.style.display = "none";
+        }
+        else {
         var populationDesc = 'Urban Area Population:';
         var population = data.categories[1].data[0].float_value;
         var sunshineDesc = 'Average % chance of sunshine:';
@@ -43,12 +58,17 @@ function getApi(event) {
         '<tr><td>'+gunDeathsDesc+'</td><td>'+gunDeaths+'</td></tr>';
 
         cityData.innerHTML = tableInsert;
+        btnInfo.style.display = "block";
+
+        }
+        
          //Call to function getBreweries() passing city.toLowerCase parameter
         getBreweries(cityHeader.toLowerCase());
       });
   }
   
   btnCity.addEventListener('click', getApi);
+  btnSearch.addEventListener('click', getApi);
 
   //JS for modal only
 document.addEventListener('DOMContentLoaded', () => {
