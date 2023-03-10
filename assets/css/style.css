@@ -83,11 +83,59 @@ td {
 #btn-container{
     margin: 10px;
 }
+
+#ulElements span {
+    font-family: Arial, Helvetica, sans-serif;
+    font-stretch: narrower;
+    display: block;
+    padding-left: 1em;
+    background-color: burlywood;
+} 
+
+ .breweries h2 {
+    margin-top: 2em;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-left: 1em;
+
+} 
+
+#ulElements table {
+    background-color: burlywood;
+    font-stretch: narrower;
+    width: 100%;  
+    font-family:Arial, Helvetica, sans-serif;
+    /* background-color: red; --right*/
+    
+}
     
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    #ulElements li{
-        width: 100%;
+            #ulElements li{
+                width: 100%;
+            }     
+
+            #ulElements table td:nth-child(1) {
+                background-color: burlywood;
+                font-stretch: narrower;
+                font-family:Arial, Helvetica, sans-serif;
+                /* background-color:blue --left*/             
+            }
+
+            #ulElements table td:nth-child(1) {
+                font-size: 1.2em;
+
+            }
+
+            #ulElements table td:nth-child(1) {
+                font-size: 1.2em;           
+            }
+
+            #ulElements table td:nth-child(1) {
+                font-size: 1.2em;
+
+        }
+        
     }
-}
+
 

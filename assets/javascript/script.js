@@ -139,6 +139,7 @@ function displayBrewery(info) {
   ulElements.innerHTML = '';
   for (var x = 0; x < info.length; x++) {
       var li = document.createElement("li"); 
+      var table = document.createElement('table');
 
       var breweryType = info[x].brewery_type;
       var city = info[x].city;
@@ -172,38 +173,190 @@ function displayBrewery(info) {
       var spanUpdatedAt = document.createElement("span");
       var spanWebsiteURL = document.createElement("span");
 
-      spanBreweryType.textContent = breweryType;
-      spanName.textContent = name;
-      spanCity.textContent = city;
-      spanCountry.textContent = country;
-      spanCountyProvince.textContent = countyProvince;
-      spanCreatedAt.textContent = createdAt;
-      spanId.textContent = id;
-      spanLatitude.textContent = latitude;
-      spanLongitude.textContent = longitude;  
-      spanPhone.textContent = phone;
-      spanPostalCode.textContent = postalCode;
-      spanState.textContent = state;
-      spanStreet.textContent = street;
-      spanUpdatedAt.textContent = updatedAt;
-      spanWebsiteURL.textContent = websiteURL;
+      var trType = document.createElement("tr");
+      var tdTypeLabel = document.createElement("td");
+      var tdTypeValue = document.createElement("td");
+     
+      var trCity = document.createElement("tr");
+      var tdCityLabel = document.createElement("td");
+      var tdCityValue = document.createElement("td");
+     
+      var trCountry = document.createElement("tr");
+      var tdCountryLabel = document.createElement("td");
+      var tdCountryValue = document.createElement("td");
+     
+      var trCountyProvince = document.createElement("tr");
+      var tdCountyProvinceLabel = document.createElement("td");
+      var tdCountyProvinceValue = document.createElement("td");
+     
+      var trCreatedAt = document.createElement("tr");
+      var tdCreatedAtLabel = document.createElement("td");
+      var tdCreatedAtValue = document.createElement("td");
+     
+      var trId = document.createElement("tr");
+      var tdIdLabel = document.createElement("td");
+      var tdIdValue = document.createElement("td");
+     
+      var trLatitude = document.createElement("tr");
+      var tdLatitudeLabel = document.createElement("td");
+      var tdLatitudeValue = document.createElement("td");
+     
+      var trLongitude = document.createElement("tr");
+      var tdLongitudeLabel = document.createElement("td");
+      var tdLongitudeValue = document.createElement("td");
+     
+      var trName = document.createElement("tr");
+      var tdNameLabel = document.createElement("td");
+      var tdNameValue = document.createElement("td");
+     
+      var trPhone = document.createElement("tr");
+      var tdPhoneLabel = document.createElement("td");
+      var tdPhoneValue = document.createElement("td");
+     
+      var trPostalCode = document.createElement("tr");
+      var tdPostalCodeLabel = document.createElement("td");
+      var tdPostalCodeValue = document.createElement("td");
+     
+      var trState = document.createElement("tr");
+      var tdStateLabel = document.createElement("td");
+      var tdStateValue = document.createElement("td");
+     
+      var trStreet = document.createElement("tr");
+      var tdStreetLabel = document.createElement("td");
+      var tdStreetValue = document.createElement("td");
+     
+      var trUpdatedAt = document.createElement("tr");
+      var tdUpdatedAtLabel = document.createElement("td");
+      var tdUpdatedAtValue = document.createElement("td");
+     
+      var trWebsiteURL = document.createElement("tr");
+      var tdWebsiteURLLabel = document.createElement("td");
+      var tdWebsiteURLValue = document.createElement("td");
+     
+      trType.append(tdTypeLabel);
+      trType.append(tdTypeValue);
+      tdTypeLabel.innerHTML = "Brewery Type";
+      tdTypeValue.innerHTML = breweryType;
+     
+      trCity.append(tdCityLabel);
+      trCity.append(tdCityValue);
+      tdCityLabel.innerHTML = 'City';
+      tdCityValue.innerHTML = city;
+     
+      trCountry.append(tdCountryLabel);
+      trCountry.append(tdCountryValue);
+      tdCountryLabel.innerHTML = 'Country';
+      tdCountryValue.innerHTML = country;
+     
+      trCountyProvince.append(tdCountyProvinceLabel);
+      trCountyProvince.append(tdCountyProvinceValue);
+      tdCountyProvinceLabel.innerHTML = 'CountyProvince';
+      tdCountyProvinceValue.innerHTML = countyProvince;
+     
+      trCreatedAt.append(tdCreatedAtLabel);
+      trCreatedAt.append(tdCreatedAtValue);
+      tdCreatedAtLabel.innerHTML = 'CreatedAt';
+      tdCreatedAtValue.innerHTML = createdAt;
+     
+      trId.append(tdIdLabel);
+      trId.append(tdIdValue);
+      tdIdLabel.innerHTML = 'Id';
+      tdIdValue.innerHTML = id;
+     
+      trLatitude.append(tdLatitudeLabel);
+      trLatitude.append(tdLatitudeValue);
+      tdLatitudeLabel.innerHTML = 'Latitude';
+      tdLatitudeValue.innerHTML = latitude;
+     
+      trLongitude.append(tdLongitudeLabel);
+      trLongitude.append(tdLongitudeValue);
+      tdLongitudeLabel.innerHTML = 'Longitude';
+      tdLongitudeValue.innerHTML = longitude;
+     
+      trName.append(tdNameLabel);
+      trName.append(tdNameValue);
+      tdNameLabel.innerHTML = 'Name';
+      tdNameValue.innerHTML = name;
+     
+      trPhone.append(tdPhoneLabel);
+      trPhone.append(tdPhoneValue);
+      tdPhoneLabel.innerHTML = 'Phone';
+      tdPhoneValue.innerHTML = phone;
+     
+      trPostalCode.append(tdPostalCodeLabel);
+      trPostalCode.append(tdPostalCodeValue);
+      tdPostalCodeLabel.innerHTML = 'PostalCode';
+      tdPostalCodeValue.innerHTML = postalCode;
+     
+      trState.append(tdStateLabel);
+      trState.append(tdStateValue);
+      tdStateLabel.innerHTML = 'State';
+      tdStateValue.innerHTML = state;
+     
+      trStreet.append(tdStreetLabel);
+      trStreet.append(tdStreetValue);
+      tdStreetLabel.innerHTML = 'Street';
+      tdStreetValue.innerHTML = street;
+     
+      trUpdatedAt.append(tdUpdatedAtLabel);
+      trUpdatedAt.append(tdUpdatedAtValue);
+      tdUpdatedAtLabel.innerHTML = 'UpdatedAt';
+      tdUpdatedAtValue.innerHTML = updatedAt;
+     
+      trWebsiteURL.append(tdWebsiteURLLabel);
+      trWebsiteURL.append(tdWebsiteURLValue);
+      tdWebsiteURLLabel.innerHTML = 'WebsiteURL';
+      tdWebsiteURLValue.innerHTML = websiteURL;
+
+      table.append(trName);
+      table.append(trType);
+      // table.append(trCreatedAt);
+      table.append(trPhone);
+      table.append(trStreet);
+      table.append(trCity);
+      table.append(trState);
+      table.append(trPostalCode);
+      // table.append(trCountyProvince);
+      table.append(trCountry);
+      table.append(trWebsiteURL);
+      // table.append(trUpdatedAt);
+      // table.append(trId);
+      // table.append(trLatitude);
+      // table.append(trLongitude);
+      
+      // spanBreweryType.textContent = breweryType;
+      // spanName.textContent = name;
+      // spanCity.textContent = city;
+      // spanCountry.textContent = country;
+      // spanCountyProvince.textContent = countyProvince;
+      // spanCreatedAt.textContent = createdAt;
+      // spanId.textContent = id;
+      // spanLatitude.textContent = latitude;
+      // spanLongitude.textContent = longitude;  
+      // spanPhone.textContent = phone;
+      // spanPostalCode.textContent = postalCode;
+      // spanState.textContent = state;
+      // spanStreet.textContent = street;
+      // spanUpdatedAt.textContent = updatedAt;
+      // spanWebsiteURL.textContent = websiteURL;
 
       // li.setAttribute("id", "liBrewery" + x);
-      li.append(spanName);
-      li.append(spanBreweryType);  
-      li.append(spanCountyProvince);
+      // li.append(spanName);
+      // li.append(spanBreweryType);  
+      // li.append(spanCountyProvince);
       // li.append(spanCreatedAt); 
       // li.append(spanLatitude);
       // li.append(spanLongitude); 
       // li.append(spanId);  
-      li.append(spanPhone);
-      li.append(spanStreet);
-      li.append(spanState);
-      li.append(spanPostalCode);
-      li.append(spanCity);
-      li.append(spanCountry); 
+      // li.append(spanPhone);
+      // li.append(spanStreet);
+      // li.append(spanState);
+      // li.append(spanPostalCode);
+      // li.append(spanCity);
+      // li.append(spanCountry); 
       // li.append(spanUpdatedAt);
-      li.append(spanWebsiteURL);
+      // li.append(spanWebsiteURL);
+      li.append(table);
       ulElements.append(li);
   }
 
