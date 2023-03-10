@@ -22,9 +22,9 @@
         </div>
       </section>
 <!--middle section with input buttons for cities-->
-<section id="background">
+<section class="is-flex is-flex-direction-column ">
   <div class="is-flex is-justify-content-center">
-    <section class="section is-large">
+    <section id="section1" class="section is-large">
       <h1 class="title"></h1>
       <h2 id="content-for-btn" class="subtitle is-size-2 has-text-white">
         What city are you drinking in:
@@ -45,7 +45,7 @@
         <button  class="button is-large">Chicago</button>
         <button  class="button is-large">Detroit</button>
         <button  class="button is-large">Miami</button>
-      </div>  
+      </div> 
     </section>
   </div>
   <!--modal for more information-->
@@ -65,19 +65,23 @@
   </div>
 
   <!--temporarily for visualization, *pending table-->
-  <div id="divBrewery">
+  <div class="is-flex is-justify-content-center" id="divBrewery">
       <ul id="ulElements"></ul>
       <table id="tblBreweries"></table>
   </div>
   <!------------------------------------------------->
+ 
+</section>    
+
+<!--btn for learning more-->
+<div id="btn-container" class="is-flex is-justify-content-center">
   <button id="info-btn" class="js-modal-trigger" data-target="modal-js-example">
     Want to know more about your city?
   </button>
-</section>    
-
-
+</div>
 
 <!--javascript link-->
 <script src="./assets/javascript/script.js"></script>
 </body>
+
 </html>
