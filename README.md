@@ -18,6 +18,10 @@ Suggestions of what to do and where based on user location, companions, and bud
 ![alt "Breweries by City"](./assets/images/Breweries-progress.png) Breweries progress code OK
 ![alt "Breweries by City"](./assets/images/Modalbuttonfornow.png) Modal button for now
 ![alt "Breweries by City"](./assets/images/Breweries-progress-2.png) Breweries table's display
+![alt "Breweries by City"](./assets/images/Breweries-progress-button-4.png) Breweries tables' butnSave
+![alt "Breweries by City"](./assets/images/forReviewbyPj-LocalStorageBreweriesbtnSave.png) Validation btnSave button saving Breweries in the Local Storage
+
+
 
 
 

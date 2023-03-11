@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Function getBreweries() access de API by city and limits de number to 5 only
 function getBreweries(city) {
-  var queryString = "https://api.openbrewerydb.org/breweries?by_city=" + city + "&per_page=5";
+  var queryString = "https://api.openbrewerydb.org/breweries?by_city=" + city + "&per_page=10";
   fetch(queryString)
       .then(function(response) {
           return response.json();
@@ -133,13 +133,16 @@ function getBreweries(city) {
 // Function in charge of examines the object Breweries information creating and 
 //appending in html the ul, li and span elements on the fly.
 function displayBrewery(info) {
+
   console.log("This is the Brewery Info : ", info);
   var ulElements = document.querySelector("#ulElements");
   var table = document.querySelector("#tblBreweries");
-  ulElements.innerHTML = '';
+  ulElements.innerHTML = "";
+
   for (var x = 0; x < info.length; x++) {
       var li = document.createElement("li"); 
-      var table = document.createElement('table');
+      var link = document.createElement("a");
+      var table = document.createElement("table");
 
       var breweryType = info[x].brewery_type;
       var city = info[x].city;
@@ -303,22 +306,42 @@ function displayBrewery(info) {
       tdUpdatedAtLabel.innerHTML = 'UpdatedAt';
       tdUpdatedAtValue.innerHTML = updatedAt;
      
+      link.setAttribute("href", websiteURL);
+      link.setAttribute("targe","_blank");
+      link.textContent = websiteURL;
       trWebsiteURL.append(tdWebsiteURLLabel);
       trWebsiteURL.append(tdWebsiteURLValue);
       tdWebsiteURLLabel.innerHTML = 'WebsiteURL';
-      tdWebsiteURLValue.innerHTML = websiteURL;
+      tdWebsiteURLValue.append(link);
+      // tdWebsiteURLValue.innerHTML = websiteURL;
+
+      table.setAttribute('id', id);
+
+    ///creating class btnSave and assign it to var btnSave
+      var btnSave = document.createElement('button');
+      var trMoreInfo = document.createElement("tr");
+      var tdMoreInfoLabel = document.createElement("td");
+      var tdMoreInfoButton = document.createElement("td");
+      btnSave.setAttribute('class', 'btnSave');
+      btnSave.textContent = 'Click here!';
+      tdMoreInfoLabel.textContent = 'Do you want to save this Brewery?';
+      tdMoreInfoButton.append(btnSave);
+      trMoreInfo.append(tdMoreInfoLabel);
+      trMoreInfo.append(tdMoreInfoButton);
 
       table.append(trName);
-      table.append(trType);
-      // table.append(trCreatedAt);
+      table.append(trType);  
       table.append(trPhone);
       table.append(trStreet);
       table.append(trCity);
       table.append(trState);
       table.append(trPostalCode);
-      // table.append(trCountyProvince);
       table.append(trCountry);
+      table.append(trId);
       table.append(trWebsiteURL);
+      table.append(trMoreInfo);
+       // table.append(trCountyProvince);
+      // table.append(trCreatedAt);
       // table.append(trUpdatedAt);
       // table.append(trId);
       // table.append(trLatitude);
@@ -359,5 +382,66 @@ function displayBrewery(info) {
       li.append(table);
       ulElements.append(li);
   }
+   saveButtons();
 
+}
+
+///delete from here to the bottom is you want to add your way of saving and displaying 
+///from the local storage. If you delete, you will need to start by creating the 
+///saveButtons() function.
+function saveButtons() {
+  var buttons = document.getElementsByClassName('btnSave');
+  for (var x = 0; x < buttons.length; x++) {
+      buttons[x].addEventListener('click', saveBrewery);
+  }
+}
+
+function saveBrewery(event) {
+  var button = event.target;
+  var tblInfo = button.closest('table');
+  var duplicate = false;
+  var breweries = [];
+  var favorites = JSON.parse(localStorage.getItem('favorites'));
+  if (favorites != null) {
+      breweries = favorites;
+  }
+
+  for (var x = 0; x < breweries.length; x++) {
+      var tbl = breweries[x];
+      var div = document.createElement('div');
+      div.innerHTML = tbl;
+      var domTable = div.children[0];
+      if (domTable.getAttribute('id') == tblInfo.getAttribute('id')) {
+          duplicate = true;
+      }
+      console.log("This is a table: ", div);
+  }
+  if (!duplicate) {
+      breweries.push(tblInfo.outerHTML);
+      localStorage.setItem('favorites', JSON.stringify(breweries));
+  }
+
+}
+///Pj, displayFavorites() function is created but has not been invoked. 
+///You can continue from here or you can remove the code from functions saveButtons(), 
+///and create your way of saving and
+///displaying from Local Storage. It is saving the breweries and it is not duplicated them.
+///Because the displayFavorites() function has not been called you won't be able to see it,
+///you can validate the program is saving without duplicates, from the console, 
+///looking at the local storage.
+///I was not able to fix the style of the table, it behaves a little weird depending
+///of the size of data.
+
+function displayFavorites() {
+  var ul = document.getElementById('ulElements');
+  ul.innerHTML = '';
+  var favorites = JSON.parse(localStorage.getItem('favorites'));
+  if (favorites != null) {
+      for (var x = 0; x < favorites.length; x++) {
+          var li = document.createElement('li');
+          li.innerHTML = favorites[x];
+          ul.append(li);
+      }
+  }
+  saveButtons();
 }
