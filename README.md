@@ -17,6 +17,13 @@ Suggestions of what to do and where based on user location, companions, and bud
 ![alt "Breweries by City"](./assets/images/Breweries-progress-1.png) Breweries info progress
 ![alt "Breweries by City"](./assets/images/Breweries-progress.png) Breweries progress code OK
 ![alt "Breweries by City"](./assets/images/Modalbuttonfornow.png) Modal button for now
+![alt "Breweries by City"](./assets/images/Breweries-progress-2.png) Breweries table's display
+![alt "Breweries by City"](./assets/images/Breweries-progress-button-4.png) Breweries tables' butnSave
+![alt "Breweries by City"](./assets/images/forReviewbyPj-LocalStorageBreweriesbtnSave.png) Validation btnSave button saving Breweries in the Local Storage
+
+
+
+
 
 # Where We Drankin'
 Where We Drankin' is a web app using two API's to find bars based on your city and if you would like it can also give you information based on the city you choose. The information can include things such as average age, average rent cost of the area, etc.

@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Function getBreweries() access de API by city and limits de number to 5 only
 function getBreweries(city) {
-  var queryString = "https://api.openbrewerydb.org/breweries?by_city=" + city + "&per_page=5";
+  var queryString = "https://api.openbrewerydb.org/breweries?by_city=" + city + "&per_page=10";
   fetch(queryString)
       .then(function(response) {
           return response.json();
@@ -133,12 +133,16 @@ function getBreweries(city) {
 // Function in charge of examines the object Breweries information creating and 
 //appending in html the ul, li and span elements on the fly.
 function displayBrewery(info) {
+
   console.log("This is the Brewery Info : ", info);
   var ulElements = document.querySelector("#ulElements");
   var table = document.querySelector("#tblBreweries");
-  ulElements.innerHTML = '';
+  ulElements.innerHTML = "";
+
   for (var x = 0; x < info.length; x++) {
       var li = document.createElement("li"); 
+      var link = document.createElement("a");
+      var table = document.createElement("table");
 
       var breweryType = info[x].brewery_type;
       var city = info[x].city;
@@ -172,39 +176,272 @@ function displayBrewery(info) {
       var spanUpdatedAt = document.createElement("span");
       var spanWebsiteURL = document.createElement("span");
 
-      spanBreweryType.textContent = breweryType;
-      spanName.textContent = name;
-      spanCity.textContent = city;
-      spanCountry.textContent = country;
-      spanCountyProvince.textContent = countyProvince;
-      spanCreatedAt.textContent = createdAt;
-      spanId.textContent = id;
-      spanLatitude.textContent = latitude;
-      spanLongitude.textContent = longitude;  
-      spanPhone.textContent = phone;
-      spanPostalCode.textContent = postalCode;
-      spanState.textContent = state;
-      spanStreet.textContent = street;
-      spanUpdatedAt.textContent = updatedAt;
-      spanWebsiteURL.textContent = websiteURL;
+      var trType = document.createElement("tr");
+      var tdTypeLabel = document.createElement("td");
+      var tdTypeValue = document.createElement("td");
+     
+      var trCity = document.createElement("tr");
+      var tdCityLabel = document.createElement("td");
+      var tdCityValue = document.createElement("td");
+     
+      var trCountry = document.createElement("tr");
+      var tdCountryLabel = document.createElement("td");
+      var tdCountryValue = document.createElement("td");
+     
+      var trCountyProvince = document.createElement("tr");
+      var tdCountyProvinceLabel = document.createElement("td");
+      var tdCountyProvinceValue = document.createElement("td");
+     
+      var trCreatedAt = document.createElement("tr");
+      var tdCreatedAtLabel = document.createElement("td");
+      var tdCreatedAtValue = document.createElement("td");
+     
+      var trId = document.createElement("tr");
+      var tdIdLabel = document.createElement("td");
+      var tdIdValue = document.createElement("td");
+     
+      var trLatitude = document.createElement("tr");
+      var tdLatitudeLabel = document.createElement("td");
+      var tdLatitudeValue = document.createElement("td");
+     
+      var trLongitude = document.createElement("tr");
+      var tdLongitudeLabel = document.createElement("td");
+      var tdLongitudeValue = document.createElement("td");
+     
+      var trName = document.createElement("tr");
+      var tdNameLabel = document.createElement("td");
+      var tdNameValue = document.createElement("td");
+     
+      var trPhone = document.createElement("tr");
+      var tdPhoneLabel = document.createElement("td");
+      var tdPhoneValue = document.createElement("td");
+     
+      var trPostalCode = document.createElement("tr");
+      var tdPostalCodeLabel = document.createElement("td");
+      var tdPostalCodeValue = document.createElement("td");
+     
+      var trState = document.createElement("tr");
+      var tdStateLabel = document.createElement("td");
+      var tdStateValue = document.createElement("td");
+     
+      var trStreet = document.createElement("tr");
+      var tdStreetLabel = document.createElement("td");
+      var tdStreetValue = document.createElement("td");
+     
+      var trUpdatedAt = document.createElement("tr");
+      var tdUpdatedAtLabel = document.createElement("td");
+      var tdUpdatedAtValue = document.createElement("td");
+     
+      var trWebsiteURL = document.createElement("tr");
+      var tdWebsiteURLLabel = document.createElement("td");
+      var tdWebsiteURLValue = document.createElement("td");
+     
+      trType.append(tdTypeLabel);
+      trType.append(tdTypeValue);
+      tdTypeLabel.innerHTML = "Brewery Type";
+      tdTypeValue.innerHTML = breweryType;
+     
+      trCity.append(tdCityLabel);
+      trCity.append(tdCityValue);
+      tdCityLabel.innerHTML = 'City';
+      tdCityValue.innerHTML = city;
+     
+      trCountry.append(tdCountryLabel);
+      trCountry.append(tdCountryValue);
+      tdCountryLabel.innerHTML = 'Country';
+      tdCountryValue.innerHTML = country;
+     
+      trCountyProvince.append(tdCountyProvinceLabel);
+      trCountyProvince.append(tdCountyProvinceValue);
+      tdCountyProvinceLabel.innerHTML = 'CountyProvince';
+      tdCountyProvinceValue.innerHTML = countyProvince;
+     
+      trCreatedAt.append(tdCreatedAtLabel);
+      trCreatedAt.append(tdCreatedAtValue);
+      tdCreatedAtLabel.innerHTML = 'CreatedAt';
+      tdCreatedAtValue.innerHTML = createdAt;
+     
+      trId.append(tdIdLabel);
+      trId.append(tdIdValue);
+      tdIdLabel.innerHTML = 'Id';
+      tdIdValue.innerHTML = id;
+     
+      trLatitude.append(tdLatitudeLabel);
+      trLatitude.append(tdLatitudeValue);
+      tdLatitudeLabel.innerHTML = 'Latitude';
+      tdLatitudeValue.innerHTML = latitude;
+     
+      trLongitude.append(tdLongitudeLabel);
+      trLongitude.append(tdLongitudeValue);
+      tdLongitudeLabel.innerHTML = 'Longitude';
+      tdLongitudeValue.innerHTML = longitude;
+     
+      trName.append(tdNameLabel);
+      trName.append(tdNameValue);
+      tdNameLabel.innerHTML = 'Name';
+      tdNameValue.innerHTML = name;
+     
+      trPhone.append(tdPhoneLabel);
+      trPhone.append(tdPhoneValue);
+      tdPhoneLabel.innerHTML = 'Phone';
+      tdPhoneValue.innerHTML = phone;
+     
+      trPostalCode.append(tdPostalCodeLabel);
+      trPostalCode.append(tdPostalCodeValue);
+      tdPostalCodeLabel.innerHTML = 'PostalCode';
+      tdPostalCodeValue.innerHTML = postalCode;
+     
+      trState.append(tdStateLabel);
+      trState.append(tdStateValue);
+      tdStateLabel.innerHTML = 'State';
+      tdStateValue.innerHTML = state;
+     
+      trStreet.append(tdStreetLabel);
+      trStreet.append(tdStreetValue);
+      tdStreetLabel.innerHTML = 'Street';
+      tdStreetValue.innerHTML = street;
+     
+      trUpdatedAt.append(tdUpdatedAtLabel);
+      trUpdatedAt.append(tdUpdatedAtValue);
+      tdUpdatedAtLabel.innerHTML = 'UpdatedAt';
+      tdUpdatedAtValue.innerHTML = updatedAt;
+     
+      link.setAttribute("href", websiteURL);
+      link.setAttribute("targe","_blank");
+      link.textContent = websiteURL;
+      trWebsiteURL.append(tdWebsiteURLLabel);
+      trWebsiteURL.append(tdWebsiteURLValue);
+      tdWebsiteURLLabel.innerHTML = 'WebsiteURL';
+      tdWebsiteURLValue.append(link);
+      // tdWebsiteURLValue.innerHTML = websiteURL;
+
+      table.setAttribute('id', id);
+
+    ///creating class btnSave and assign it to var btnSave
+      var btnSave = document.createElement('button');
+      var trMoreInfo = document.createElement("tr");
+      var tdMoreInfoLabel = document.createElement("td");
+      var tdMoreInfoButton = document.createElement("td");
+      btnSave.setAttribute('class', 'btnSave');
+      btnSave.textContent = 'Click here!';
+      tdMoreInfoLabel.textContent = 'Do you want to save this Brewery?';
+      tdMoreInfoButton.append(btnSave);
+      trMoreInfo.append(tdMoreInfoLabel);
+      trMoreInfo.append(tdMoreInfoButton);
+
+      table.append(trName);
+      table.append(trType);  
+      table.append(trPhone);
+      table.append(trStreet);
+      table.append(trCity);
+      table.append(trState);
+      table.append(trPostalCode);
+      table.append(trCountry);
+      table.append(trId);
+      table.append(trWebsiteURL);
+      table.append(trMoreInfo);
+       // table.append(trCountyProvince);
+      // table.append(trCreatedAt);
+      // table.append(trUpdatedAt);
+      // table.append(trId);
+      // table.append(trLatitude);
+      // table.append(trLongitude);
+      
+      // spanBreweryType.textContent = breweryType;
+      // spanName.textContent = name;
+      // spanCity.textContent = city;
+      // spanCountry.textContent = country;
+      // spanCountyProvince.textContent = countyProvince;
+      // spanCreatedAt.textContent = createdAt;
+      // spanId.textContent = id;
+      // spanLatitude.textContent = latitude;
+      // spanLongitude.textContent = longitude;  
+      // spanPhone.textContent = phone;
+      // spanPostalCode.textContent = postalCode;
+      // spanState.textContent = state;
+      // spanStreet.textContent = street;
+      // spanUpdatedAt.textContent = updatedAt;
+      // spanWebsiteURL.textContent = websiteURL;
 
       // li.setAttribute("id", "liBrewery" + x);
-      li.append(spanName);
-      li.append(spanBreweryType);  
-      li.append(spanCountyProvince);
+      // li.append(spanName);
+      // li.append(spanBreweryType);  
+      // li.append(spanCountyProvince);
       // li.append(spanCreatedAt); 
       // li.append(spanLatitude);
       // li.append(spanLongitude); 
       // li.append(spanId);  
-      li.append(spanPhone);
-      li.append(spanStreet);
-      li.append(spanState);
-      li.append(spanPostalCode);
-      li.append(spanCity);
-      li.append(spanCountry); 
+      // li.append(spanPhone);
+      // li.append(spanStreet);
+      // li.append(spanState);
+      // li.append(spanPostalCode);
+      // li.append(spanCity);
+      // li.append(spanCountry); 
       // li.append(spanUpdatedAt);
-      li.append(spanWebsiteURL);
+      // li.append(spanWebsiteURL);
+      li.append(table);
       ulElements.append(li);
   }
+   saveButtons();
 
+}
+
+///delete from here to the bottom is you want to add your way of saving and displaying 
+///from the local storage. If you delete, you will need to start by creating the 
+///saveButtons() function.
+function saveButtons() {
+  var buttons = document.getElementsByClassName('btnSave');
+  for (var x = 0; x < buttons.length; x++) {
+      buttons[x].addEventListener('click', saveBrewery);
+  }
+}
+
+function saveBrewery(event) {
+  var button = event.target;
+  var tblInfo = button.closest('table');
+  var duplicate = false;
+  var breweries = [];
+  var favorites = JSON.parse(localStorage.getItem('favorites'));
+  if (favorites != null) {
+      breweries = favorites;
+  }
+
+  for (var x = 0; x < breweries.length; x++) {
+      var tbl = breweries[x];
+      var div = document.createElement('div');
+      div.innerHTML = tbl;
+      var domTable = div.children[0];
+      if (domTable.getAttribute('id') == tblInfo.getAttribute('id')) {
+          duplicate = true;
+      }
+      console.log("This is a table: ", div);
+  }
+  if (!duplicate) {
+      breweries.push(tblInfo.outerHTML);
+      localStorage.setItem('favorites', JSON.stringify(breweries));
+  }
+
+}
+///Pj, displayFavorites() function is created but has not been invoked. 
+///You can continue from here or you can remove the code from functions saveButtons(), 
+///and create your way of saving and
+///displaying from Local Storage. It is saving the breweries and it is not duplicated them.
+///Because the displayFavorites() function has not been called you won't be able to see it,
+///you can validate the program is saving without duplicates, from the console, 
+///looking at the local storage.
+///I was not able to fix the style of the table, it behaves a little weird depending
+///of the size of data.
+
+function displayFavorites() {
+  var ul = document.getElementById('ulElements');
+  ul.innerHTML = '';
+  var favorites = JSON.parse(localStorage.getItem('favorites'));
+  if (favorites != null) {
+      for (var x = 0; x < favorites.length; x++) {
+          var li = document.createElement('li');
+          li.innerHTML = favorites[x];
+          ul.append(li);
+      }
+  }
+  saveButtons();
 }
