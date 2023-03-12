@@ -34,14 +34,20 @@ html {
     border-radius: 5px;
 }
 
+.button {
+    margin: 4px 4px 4px;
+}
 #info-btn {
     display: none;
-    width: 20%;
+    width: auto;
+    height: auto;
     background-color: red;
     color: white;
+    font-size: 1.5rem;
     font-weight: 500;
-    height: 30px;
     padding: 5px 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     border: 2px black;
     border-radius: 5px;
 }
@@ -58,6 +64,15 @@ td {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 700;
     text-align: center;
+}
+
+#list-heading {
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+    font-weight: 500;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
 }
 
 #ulElements li {
