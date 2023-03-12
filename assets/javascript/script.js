@@ -438,4 +438,4 @@ function displayFavorites(event) {
   saveButtons();
 }
 
-btnViewSaved,addEventListener('click', displayFavorites);
+btnViewSaved.addEventListener('click', displayFavorites);
