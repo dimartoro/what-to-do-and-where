@@ -3,7 +3,8 @@ var cityData = document.getElementById('city-data');
 var tableHeaderSpan = document.getElementById('table-city');
 var searchField = document.getElementById("search-text");
 var btnSearch = document.getElementById("btn-search");
-var btnInfo = document.getElementById('info-btn')
+var btnInfo = document.getElementById('info-btn');
+
 
 function getApi(event) {
     event.preventDefault();
@@ -383,12 +384,10 @@ function displayBrewery(info) {
       ulElements.append(li);
   }
    saveButtons();
-
 }
 
-///delete from here to the bottom is you want to add your way of saving and displaying 
-///from the local storage. If you delete, you will need to start by creating the 
-///saveButtons() function.
+// DIANA CREATED THIS FUNCTION APPARENTLY TO LISTEN TO ALL SAVE BUTTONS
+// PERHAPS THIS IS CREATING THE DISPALY ISSUE AND SHOULD BE FORMATTED DIFFERENTLY?
 function saveButtons() {
   var buttons = document.getElementsByClassName('btnSave');
   for (var x = 0; x < buttons.length; x++) {
@@ -396,46 +395,39 @@ function saveButtons() {
   }
 }
 
+// VARIABLE TO DEFINE ARRAY TO STORE SAVED BREWERIES IN LOCALSTORAGE
+var favBreweries = JSON.parse(localStorage.getItem("favBreweries")) || [];
+
+// DOM REFERENCE FOR BUTTON TO VIEW SAVED BREWERIES
+var btnViewSaved = document.getElementById('btnViewSaved');
+
+// FUNCTION TO SAVE A GIVEN BREWERY TO LOCALSTORAGE ARRAY WHEN SAVE BUTTON IN ITS TABLE IS CLICKED
 function saveBrewery(event) {
+  event.preventDefault();
   var button = event.target;
   var tblInfo = button.closest('table');
-  var duplicate = false;
-  var breweries = [];
-  var favorites = JSON.parse(localStorage.getItem('favorites'));
-  if (favorites != null) {
-      breweries = favorites;
-  }
-
-  for (var x = 0; x < breweries.length; x++) {
-      var tbl = breweries[x];
-      var div = document.createElement('div');
-      div.innerHTML = tbl;
-      var domTable = div.children[0];
-      if (domTable.getAttribute('id') == tblInfo.getAttribute('id')) {
-          duplicate = true;
-      }
-      console.log("This is a table: ", div);
-  }
-  if (!duplicate) {
-      breweries.push(tblInfo.outerHTML);
-      localStorage.setItem('favorites', JSON.stringify(breweries));
-  }
-
+  favBreweries.push(tblInfo.outerHTML);
+  localStorage.setItem('favBreweries', JSON.stringify(favBreweries));
+  // REMOVED THIS DUPLICATE CHECKING CODE FOR NOW AS IT WAS CAUSING ISSUES
+  // for (var x = 0; x < favBreweries.length; x++) {
+  //     var tbl = breweries[x];
+  //     var div = document.createElement('div');
+  //     div.innerHTML = tbl;
+  //     var domTable = div.children[0];
+  //     if (domTable.getAttribute('id') == tblInfo.getAttribute('id')) {
+  //         duplicate = true;
+  //     }
+  //     console.log("This is a table: ", div);
+  // }
+  // if (!duplicate) {
 }
-///Pj, displayFavorites() function is created but has not been invoked. 
-///You can continue from here or you can remove the code from functions saveButtons(), 
-///and create your way of saving and
-///displaying from Local Storage. It is saving the breweries and it is not duplicated them.
-///Because the displayFavorites() function has not been called you won't be able to see it,
-///you can validate the program is saving without duplicates, from the console, 
-///looking at the local storage.
-///I was not able to fix the style of the table, it behaves a little weird depending
-///of the size of data.
 
-function displayFavorites() {
+// BUTTON TO DISPLAY FAVORITE BREWERIES FROM LOCALSTORAGE ARRAY
+function displayFavorites(event) {
+  event.preventDefault();
   var ul = document.getElementById('ulElements');
   ul.innerHTML = '';
-  var favorites = JSON.parse(localStorage.getItem('favorites'));
+  var favorites = JSON.parse(localStorage.getItem('favBreweries'));
   if (favorites != null) {
       for (var x = 0; x < favorites.length; x++) {
           var li = document.createElement('li');
@@ -445,3 +437,5 @@ function displayFavorites() {
   }
   saveButtons();
 }
+
+btnViewSaved,addEventListener('click', displayFavorites);
