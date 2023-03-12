@@ -84,6 +84,18 @@ td {
     margin: 10px;
 }
 
+#btn-search:hover{
+    cursor: pointer;
+}
+
+.btnSave:hover{
+    cursor: pointer;
+}
+
+#info-btn:hover{
+    cursor: pointer;
+}
+
 #btnViewSaved {
     background-color: blue;
     color: white;
@@ -133,7 +145,10 @@ td {
     overflow-x: auto;
     /* background-color:blue --left*/             
  }
-
+ 
+ #btnViewSaved:hover {
+cursor: pointer;
+ }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
             #ulElements li{
