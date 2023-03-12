@@ -4,6 +4,7 @@ var tableHeaderSpan = document.getElementById('table-city');
 var searchField = document.getElementById("search-text");
 var btnSearch = document.getElementById("btn-search");
 var btnInfo = document.getElementById('info-btn');
+var listHeading = document.getElementById('list-heading');
 
 
 function getApi(event) {
@@ -127,18 +128,20 @@ function getBreweries(city) {
       })
       .then(function(data) {
           console.log("This is the city seach data: ", data);
-          displayBrewery(data);
+          displayBrewery(data,city);
       });
 }
 
 // Function in charge of examines the object Breweries information creating and 
 //appending in html the ul, li and span elements on the fly.
-function displayBrewery(info) {
+function displayBrewery(info,city) {
 
   console.log("This is the Brewery Info : ", info);
   var ulElements = document.querySelector("#ulElements");
   var table = document.querySelector("#tblBreweries");
   ulElements.innerHTML = "";
+  listHeading.textContent = "Breweries in " + city.toUpperCase();
+
 
   for (var x = 0; x < info.length; x++) {
       var li = document.createElement("li"); 
@@ -426,12 +429,15 @@ function saveBrewery(event) {
 function displayFavorites(event) {
   event.preventDefault();
   var ul = document.getElementById('ulElements');
+  listHeading.textContent = 'Your Favorite Breweries:'
   ul.innerHTML = '';
   var favorites = JSON.parse(localStorage.getItem('favBreweries'));
   if (favorites != null) {
       for (var x = 0; x < favorites.length; x++) {
           var li = document.createElement('li');
+          
           li.innerHTML = favorites[x];
+          console.log(li);
           ul.append(li);
       }
   }
