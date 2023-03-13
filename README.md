@@ -4,9 +4,9 @@ Where We Drankin' is a web app using two API's to find breweries based on your c
 ## Table of Contents
 
 - [User Story](#user-story)
-- [Installation](#installation)
 - [Usage](#usage)
-- [URL](#url)
+- [Installation](#installation)
+- [DeploymentURL](#deploymentURL)
 - [Credits](#credits)
 - [License](#license)
 
@@ -35,6 +35,8 @@ THEN I am given a list of brewerys and given the option to know more about the l
 ## Installation
 To use this website click the following URL link.
 
+## DeploymentURL
+https://dimartoro.github.io/what-to-do-and-where/
 
 ## Wireframe
 ​
