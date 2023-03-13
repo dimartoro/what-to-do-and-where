@@ -1,8 +1,3 @@
-# what-to-do-and-where
-Suggestions of what to do and where based on user location, companions, and budget
-
-
-
 ## Table of Contents
 
 - [Installation](#installation)
@@ -12,24 +7,14 @@ Suggestions of what to do and where based on user location, companions, and bud
 - [License](#license)
 
 
-## Usage 
-
-![alt "Breweries by City"](./assets/images/Breweries-progress-1.png) Breweries info progress
-![alt "Breweries by City"](./assets/images/Breweries-progress.png) Breweries progress code OK
-![alt "Breweries by City"](./assets/images/Modalbuttonfornow.png) Modal button for now
-![alt "Breweries by City"](./assets/images/Breweries-progress-2.png) Breweries table's display
-![alt "Breweries by City"](./assets/images/Breweries-progress-button-4.png) Breweries tables' butnSave
-![alt "Breweries by City"](./assets/images/forReviewbyPj-LocalStorageBreweriesbtnSave.png) Validation btnSave button saving Breweries in the Local Storage
-
-
 # Where We Drankin'
-Where We Drankin' is a web app using two API's to find bars based on your city and if you would like it can also give you information based on the city you choose. The information can include things such as average age, average rent cost of the area, etc.
+Where We Drankin' is a web app using two API's to find breweries based on your city and if you would like it can also give you fun facts about the city you choose. The information can include things such as average age, average rent cost of the area, etc. You have the option to save your favorite breweries to a list and access that list using local storage. You also have the option of searching for a city that is not on the preset button list and if it exists you will recieve a list of breweries for that as well.
 ​
 ## User Story
-AS Somebody looking for a bar to go to and drink with friends
+AS Somebody looking for a brewery to go to and drink with friends
 ​
 ​
-I WANT a list of bars in the city of my choice and to know the area well
+I WANT a list of brewerys in the city of my choice and to know the area well
 ​
 ​
 SO THAT I can have fun and know the area
@@ -41,7 +26,7 @@ GIVEN I open the page
 WHEN I click my cities' button
 ​
 ​
-THEN I am given a list of bars and given the option to know more about the location
+THEN I am given a list of brewerys and given the option to know more about the location
 ​
 ## Wireframe
 ​
@@ -59,3 +44,18 @@ THEN I am given a list of bars and given the option to know more about the locat
 ​
 ​
 ## Finished Product
+
+Open Page:
+![alt "Breweries by City"](./assets/images/begin.png) 
+
+Brewery List:
+![alt "Breweries by City"](./assets/images/breweries.png) 
+
+Modal:
+![alt "Breweries by City"](./assets/images/Modal.png) 
+
+Favorites List:
+![alt "Breweries by City"](./assets/images/favorite.png) 
+
+How to save to favorites:
+![alt "Breweries by City"](./assets/images/save.png)  
