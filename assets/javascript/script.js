@@ -1,27 +1,28 @@
 var btnCity = document.getElementById("btn-group");
 var cityData = document.getElementById('city-data');
 var tableHeaderSpan = document.getElementById('table-city');
+var infoBtnSpan = document.getElementById('btn-info-city');
 var searchField = document.getElementById("search-text");
 var btnSearch = document.getElementById("btn-search");
 var btnInfo = document.getElementById('info-btn');
 var listHeading = document.getElementById('list-heading');
 
-
+// FUNCTION TO QUERY TELEPORT API FOR CITY DEMOGRAPHIC DATA TO DISPLAY IN MODAL
 function getApi(event) {
     event.preventDefault();
-    // fetch request gets a list of all the repos for the node.js organization
     if (event.target.id == "btn-search"){
       cityHeader = searchField.value;
     }
     else {
       cityHeader = event.target.textContent;
     };
-    console.log(city);
 
     var city = cityHeader.toLowerCase().replace(" ","-");
     var requestUrl = 'https://api.teleport.org/api/urban_areas/slug:' + city + '/details/';
     
+    // WRITE CITY NAME TO TABLE hEADING AND MORE INFO BUTTON
     tableHeaderSpan.textContent = cityHeader;
+    infoBtnSpan.textContent = cityHeader;
 
     fetch(requestUrl)
       .then(function (response) {
@@ -32,20 +33,20 @@ function getApi(event) {
           btnInfo.style.display = "none";
         }
         else {
-        var populationDesc = 'Urban Area Population:';
-        var population = data.categories[1].data[0].float_value;
-        var sunshineDesc = 'Average % chance of sunshine:';
-        var sunshine = data.categories[2].data[4].percent_value;
+        var populationDesc = 'Urban area population:';
+        var population = data.categories[1].data[0].float_value + " million";
+        var sunshineDesc = 'Average chance of sunshine:';
+        var sunshine = (data.categories[2].data[4].percent_value * 100) + "%";
         var cappuccinoDesc = 'Average cost of a cappuccino:';
-        var cappuccino = data.categories[3].data[3].currency_dollar_value;
+        var cappuccino = "$" + data.categories[3].data[3].currency_dollar_value + "0";
         var importBeerDesc = 'Average cost of an import beer:';
-        var importBeer = data.categories[3].data[6].currency_dollar_value;
+        var importBeer = "$" + data.categories[3].data[6].currency_dollar_value + "0";
         var lifeExpDesc = 'Average life expectancy:';
-        var lifeExp = data.categories[7].data[1].float_value;
+        var lifeExp = data.categories[7].data[1].float_value + " years";
         var studioAptDesc = 'Average rent - studio apartment:';
-        var studioApt = data.categories[8].data[2].currency_dollar_value;
+        var studioApt = "$" + data.categories[8].data[2].currency_dollar_value;
         var elevationDesc = 'Average elevation:';
-        var elevation = data.categories[14].data[0].float_value;
+        var elevation = data.categories[14].data[0].float_value + " meters";
         var gunDeathsDesc = 'Annual gun deaths per 100k residents:';
         var gunDeaths = data.categories[16].data[1].int_value;
 
@@ -61,10 +62,9 @@ function getApi(event) {
 
         cityData.innerHTML = tableInsert;
         btnInfo.style.display = "block";
-
         }
         
-         //Call to function getBreweries() passing city.toLowerCase parameter
+        //Call to function getBreweries() passing city.toLowerCase parameter
         getBreweries(cityHeader.toLowerCase());
       });
   }
@@ -72,54 +72,45 @@ function getApi(event) {
   btnCity.addEventListener('click', getApi);
   btnSearch.addEventListener('click', getApi);
 
-  //JS for modal only
+  //JS for modal window
 document.addEventListener('DOMContentLoaded', () => {
-  // Functions to open and close a modal
+  // Functions to open and close modal
   function openModal($el) {
     $el.classList.add('is-active');
   }
-
   function closeModal($el) {
     $el.classList.remove('is-active');
   }
-
   function closeAllModals() {
     (document.querySelectorAll('.modal') || []).forEach(($modal) => {
       closeModal($modal);
     });
   }
-
   // Add a click event on buttons to open a specific modal
   (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
     const modal = $trigger.dataset.target;
     const $target = document.getElementById(modal);
-
     $trigger.addEventListener('click', () => {
       openModal($target);
     });
   });
-
   // Add a click event on various child elements to close the parent modal
   (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
     const $target = $close.closest('.modal');
-
     $close.addEventListener('click', () => {
       closeModal($target);
     });
   });
-
   // Add a keyboard event to close all modals
   document.addEventListener('keydown', (event) => {
     const e = event || window.event;
-
     if (e.keyCode === 27) { // Escape key
       closeAllModals();
     }
   });
 });
-//End of JS for modal
 
-//Function getBreweries() access de API by city and limits de number to 10 only
+//Function getBreweries() queries API by city and limits number of results to 10
 function getBreweries(city) {
   var queryString = "https://api.openbrewerydb.org/breweries?by_city=" + city + "&per_page=10";
   fetch(queryString)
@@ -127,7 +118,6 @@ function getBreweries(city) {
           return response.json();
       })
       .then(function(data) {
-          console.log("This is the city seach data: ", data);
           displayBrewery(data,city);
       });
 }
@@ -135,8 +125,6 @@ function getBreweries(city) {
 ///Function in charge of examines the array of object Breweries information creating and 
 ///appending in html the ul, li and table elements on the fly.
 function displayBrewery(info,city) {
-
-  console.log("This is the Brewery Info : ", info);
   var ulElements = document.querySelector("#ulElements");
   ulElements.innerHTML = "";
   listHeading.textContent = "Breweries in " + city.toUpperCase();
@@ -360,7 +348,7 @@ function saveBrewery(event) {
   localStorage.setItem('favBreweries', JSON.stringify(favBreweries));
 }
 
-// BUTTON TO DISPLAY FAVORITE BREWERIES FROM LOCALSTORAGE ARRAY
+// FUNCTION TO DISPLAY FAVORITE BREWERIES FROM LOCALSTORAGE ARRAY
 function displayFavorites(event) {
   event.preventDefault();
   var ul = document.getElementById('ulElements');
@@ -369,14 +357,12 @@ function displayFavorites(event) {
   var favorites = JSON.parse(localStorage.getItem('favBreweries'));
   if (favorites != null) {
       for (var x = 0; x < favorites.length; x++) {
-          var li = document.createElement('li');
-          
+          var li = document.createElement('li');      
           li.innerHTML = favorites[x];
-          console.log(li);
           ul.append(li);
       }
   }
   saveButtons();
 }
-
+// EVENT LISTENER TO DISPLAY USER FAVORITES ON CLICK OF BLUE BUTTON
 btnViewSaved.addEventListener('click', displayFavorites);
