@@ -79,7 +79,6 @@ td {
     width: 600px;
     padding: 1em;
     border: solid black 3px;
-    /* margin: 200px; */
 }
 
 #ulElements span {
@@ -118,6 +117,8 @@ td {
     padding: 10px;
     border: 3px white;
     border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 400;
 }
 
 /* DC Style */
