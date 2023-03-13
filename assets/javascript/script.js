@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 //End of JS for modal
 
-// Function getBreweries() access de API by city and limits de number to 5 only
+//Function getBreweries() access de API by city and limits de number to 10 only
 function getBreweries(city) {
   var queryString = "https://api.openbrewerydb.org/breweries?by_city=" + city + "&per_page=10";
   fetch(queryString)
@@ -132,16 +132,14 @@ function getBreweries(city) {
       });
 }
 
-// Function in charge of examines the object Breweries information creating and 
-//appending in html the ul, li and span elements on the fly.
+///Function in charge of examines the array of object Breweries information creating and 
+///appending in html the ul, li and table elements on the fly.
 function displayBrewery(info,city) {
 
   console.log("This is the Brewery Info : ", info);
   var ulElements = document.querySelector("#ulElements");
-  var table = document.querySelector("#tblBreweries");
   ulElements.innerHTML = "";
   listHeading.textContent = "Breweries in " + city.toUpperCase();
-
 
   for (var x = 0; x < info.length; x++) {
       var li = document.createElement("li"); 
@@ -163,22 +161,6 @@ function displayBrewery(info,city) {
       var street = info[x].street;
       var updatedAt = info[x].updated_at;
       var websiteURL = info[x].website_url;
-
-      var spanBreweryType = document.createElement("span");
-      var spanCity = document.createElement("span");
-      var spanCountry = document.createElement("span");
-      var spanCountyProvince = document.createElement("span");
-      var spanCreatedAt= document.createElement("span");
-      var spanId = document.createElement("span");
-      var spanLatitude = document.createElement("span");
-      var spanLongitude = document.createElement("span");
-      var spanName = document.createElement("span");
-      var spanPhone = document.createElement("span");
-      var spanPostalCode = document.createElement("span");
-      var spanState = document.createElement("span");
-      var spanStreet = document.createElement("span");
-      var spanUpdatedAt = document.createElement("span");
-      var spanWebsiteURL = document.createElement("span");
 
       var trType = document.createElement("tr");
       var tdTypeLabel = document.createElement("td");
@@ -317,11 +299,9 @@ function displayBrewery(info,city) {
       trWebsiteURL.append(tdWebsiteURLValue);
       tdWebsiteURLLabel.innerHTML = 'WebsiteURL';
       tdWebsiteURLValue.append(link);
-      // tdWebsiteURLValue.innerHTML = websiteURL;
-
       table.setAttribute('id', id);
 
-    ///creating class btnSave and assign it to var btnSave
+    ///creates btnSave and appends it to breweries info tables
       var btnSave = document.createElement('button');
       var trMoreInfo = document.createElement("tr");
       var tdMoreInfoLabel = document.createElement("td");
@@ -333,6 +313,7 @@ function displayBrewery(info,city) {
       trMoreInfo.append(tdMoreInfoLabel);
       trMoreInfo.append(tdMoreInfoButton);
 
+    ///appends breweries' info desired to table 
       table.append(trName);
       table.append(trType);  
       table.append(trPhone);
@@ -341,56 +322,22 @@ function displayBrewery(info,city) {
       table.append(trState);
       table.append(trPostalCode);
       table.append(trCountry);
-      table.append(trId);
       table.append(trWebsiteURL);
       table.append(trMoreInfo);
-       // table.append(trCountyProvince);
-      // table.append(trCreatedAt);
-      // table.append(trUpdatedAt);
-      // table.append(trId);
-      // table.append(trLatitude);
-      // table.append(trLongitude);
-      
-      // spanBreweryType.textContent = breweryType;
-      // spanName.textContent = name;
-      // spanCity.textContent = city;
-      // spanCountry.textContent = country;
-      // spanCountyProvince.textContent = countyProvince;
-      // spanCreatedAt.textContent = createdAt;
-      // spanId.textContent = id;
-      // spanLatitude.textContent = latitude;
-      // spanLongitude.textContent = longitude;  
-      // spanPhone.textContent = phone;
-      // spanPostalCode.textContent = postalCode;
-      // spanState.textContent = state;
-      // spanStreet.textContent = street;
-      // spanUpdatedAt.textContent = updatedAt;
-      // spanWebsiteURL.textContent = websiteURL;
 
-      // li.setAttribute("id", "liBrewery" + x);
-      // li.append(spanName);
-      // li.append(spanBreweryType);  
-      // li.append(spanCountyProvince);
-      // li.append(spanCreatedAt); 
-      // li.append(spanLatitude);
-      // li.append(spanLongitude); 
-      // li.append(spanId);  
-      // li.append(spanPhone);
-      // li.append(spanStreet);
-      // li.append(spanState);
-      // li.append(spanPostalCode);
-      // li.append(spanCity);
-      // li.append(spanCountry); 
-      // li.append(spanUpdatedAt);
-      // li.append(spanWebsiteURL);
+    ///appends table to li
       li.append(table);
+
+    ///appends li to ul
       ulElements.append(li);
   }
+
+  ///call saveButtons() function
    saveButtons();
 }
 
-// DIANA CREATED THIS FUNCTION APPARENTLY TO LISTEN TO ALL SAVE BUTTONS
-// PERHAPS THIS IS CREATING THE DISPALY ISSUE AND SHOULD BE FORMATTED DIFFERENTLY?
+///Function in charge of adding the event listener on click to the btnSave in 
+///the breweries' info tables 
 function saveButtons() {
   var buttons = document.getElementsByClassName('btnSave');
   for (var x = 0; x < buttons.length; x++) {
@@ -411,18 +358,6 @@ function saveBrewery(event) {
   var tblInfo = button.closest('table');
   favBreweries.push(tblInfo.outerHTML);
   localStorage.setItem('favBreweries', JSON.stringify(favBreweries));
-  // REMOVED THIS DUPLICATE CHECKING CODE FOR NOW AS IT WAS CAUSING ISSUES
-  // for (var x = 0; x < favBreweries.length; x++) {
-  //     var tbl = breweries[x];
-  //     var div = document.createElement('div');
-  //     div.innerHTML = tbl;
-  //     var domTable = div.children[0];
-  //     if (domTable.getAttribute('id') == tblInfo.getAttribute('id')) {
-  //         duplicate = true;
-  //     }
-  //     console.log("This is a table: ", div);
-  // }
-  // if (!duplicate) {
 }
 
 // BUTTON TO DISPLAY FAVORITE BREWERIES FROM LOCALSTORAGE ARRAY
