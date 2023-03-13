@@ -1,4 +1,4 @@
-# Where We Drankin'
+# Where We Dranking?
 Where We Drankin' is a web app using two API's to find breweries based on your city and if you would like it can also give you fun facts about the city you choose. The information can include things such as average age, average rent cost of the area, etc. You have the option to save your favorite breweries to a list and access that list using local storage. You also have the option of searching for a city that is not on the preset button list and if it exists you will recieve a list of breweries for that as well.
 
 ## Table of Contents
