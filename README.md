@@ -7,6 +7,7 @@ Where We Drankin' is a web app using two API's to find breweries based on your c
 - [Usage](#usage)
 - [Installation](#installation)
 - [DeploymentURL](#deploymentURL)
+- [Credits](#credits)
 - [License](#license)
 
 
@@ -69,7 +70,13 @@ Favorites List:
 ![alt "Breweries by City"](./assets/images/favorite.png) 
 
 How to save to favorites:
-![alt "Breweries by City"](./assets/images/save.png)  
+![alt "Breweries by City"](./assets/images/save.png) 
+
+## Credits
+
+https://www.openbrewerydb.org/documentation
+https://developers.teleport.org/api/reference/
+https://bulma.io/documentation/helpers/flexbox-helpers/
 
 ## License
 
