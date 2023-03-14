@@ -75,7 +75,9 @@ How to save to favorites:
 ## Credits
 
 https://www.openbrewerydb.org/documentation
+
 https://developers.teleport.org/api/reference/
+
 https://bulma.io/documentation/helpers/flexbox-helpers/
 
 ## License
